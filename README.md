@@ -1,8 +1,5 @@
 # accessyouth-api
 The backend to support youth outreach and empowerment by facilitating easier communication between Access Youth (NPO) and troubled youth
-
-Account password: T-KuGvMBBD=Zg7cF
-
 ---
 
 To run locally, navigate to directory with `package.json`:
