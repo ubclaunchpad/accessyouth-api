@@ -3,8 +3,8 @@ const router = express.Router();
 
 const Service = require('../models/service');
 
-router.get('/create', (req, res) => {
-  // TODO: validate req.body
+router.post('/create', (req, res) => {
+  // TODO: validate req
   Service.create({
     uuid: req.body.uuid,
     name: req.body.name,
@@ -15,6 +15,34 @@ router.get('/create', (req, res) => {
       res.status(500).send('Internal Error');
     } else {
       res.status(200).send(doc);
+    }
+  });
+});
+
+router.get('/getService', (req, res) => {
+  // TODO: validate req
+  Service.findOne({
+    uuid: req.params.uuid
+  }, (err: any, doc: any) => {
+    if (err) {
+      res.status(500).send('Internal Error');
+    } else {
+      res.status(200).send(doc);
+    }
+  });
+});
+
+router.post('/updateLocation', (req, res) => {
+  // TODO: validate req
+  Service.updateOne({
+    uuid: req.body.uuid
+  }, {
+    currentLocation: req.body.currentLocation
+  }, (err: any, res: any) => {
+    if (err) {
+      res.status(500).send('Internal Error');
+    } else {
+      res.status(200).send(res);
     }
   });
 });

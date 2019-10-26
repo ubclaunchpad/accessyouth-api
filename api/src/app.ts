@@ -10,7 +10,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/service', require('./routes/service'));
+app.use('/api/service', require('./routes/service'));
 
 mongoose.connect(
   '', // connection string
