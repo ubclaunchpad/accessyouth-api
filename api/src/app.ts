@@ -1,8 +1,10 @@
 import express from 'express';
 import mongoose from 'mongoose';
+require('dotenv').config()
 
 const app = express();
 const port = 3001;
+const connectionString: any = process.env.DB_CONNECTION_STRING;
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -13,7 +15,7 @@ app.use((req, res, next) => {
 app.use('/api/service', require('./routes/service'));
 
 mongoose.connect(
-  'mongodb+srv://accessyouth-user_0:ET6YV2291cxHhskS@cluster0-bhqru.mongodb.net/db-accessyouth?retryWrites=true&w=majority', // connection string
+  connectionString, // connection string
   { useNewUrlParser: true, useUnifiedTopology: true },
   (err) => {
     if (err) {
