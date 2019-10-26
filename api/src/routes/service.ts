@@ -47,4 +47,24 @@ router.post('/updateLocation', (req, res) => {
   });
 });
 
+router.post('/updateDetails', (req, res) => {
+  // TODO: validate req
+  Service.updateOne({
+    uuid: req.body.uuid
+  }, {
+    detail: req.body.detail
+  },
+  // Extension: two staff are going to update at the same time
+  // {
+  //   revision: req.body.revision    
+  // }, 
+  (err: any, res: any) => {
+    if (err) {
+      res.status(500).send('Internal Error');
+    } else {
+      res.status(200).send(res);
+    }
+  });
+});
+
 module.exports = router;
