@@ -13,7 +13,7 @@ app.use((req, res, next) => {
 app.use('/api/service', require('./routes/service'));
 
 mongoose.connect(
-  '', // connection string
+  'mongodb+srv://accessyouth-user_0:ET6YV2291cxHhskS@cluster0-bhqru.mongodb.net/db-accessyouth?retryWrites=true&w=majority', // connection string
   { useNewUrlParser: true, useUnifiedTopology: true },
   (err) => {
     if (err) {
