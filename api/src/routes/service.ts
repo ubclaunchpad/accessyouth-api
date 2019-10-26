@@ -53,7 +53,7 @@ router.post('/updateDetails', (req, res) => {
     uuid: req.body.uuid
   }, {
     detail: req.body.description
-  },
+  }, { runValidators: true},
   // Extension: two staff are going to update at the same time
   // {
   //   revision: req.body.revision    
