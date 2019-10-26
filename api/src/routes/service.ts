@@ -52,7 +52,7 @@ router.post('/updateDetails', (req, res) => {
   Service.updateOne({
     uuid: req.body.uuid
   }, {
-    detail: req.body.detail
+    detail: req.body.description
   },
   // Extension: two staff are going to update at the same time
   // {
