@@ -22,7 +22,7 @@ router.post('/create', (req, res) => {
 router.get('/getService', (req, res) => {
   // TODO: validate req
   Service.findOne({
-    uuid: req.params.uuid
+    uuid: req.query.uuid
   }, (err: any, doc: any) => {
     if (err) {
       res.status(500).send('Internal Error');
