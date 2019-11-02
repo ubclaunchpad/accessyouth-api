@@ -47,4 +47,18 @@ router.post('/updateLocation', (req, res) => {
   });
 });
 
+router.get('/getLocation', (req, res) => {
+  Service.findOne({
+    uuid: req.query.uuid
+  }, (err: any, service: any) => {
+    if (err) {
+      res.status(500).send('Internal Error');
+    } else if (!service) {
+      res.status(404).send('Service not found');
+    } else {
+      res.status(200).send(service.currentLocation);
+    }
+  });
+});
+
 module.exports = router;
