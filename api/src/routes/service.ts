@@ -38,11 +38,11 @@ router.post('/updateLocation', (req, res) => {
     uuid: req.body.uuid
   }, {
     currentLocation: req.body.currentLocation
-  }, (err: any, res: any) => {
+  }, (err: any) => {
     if (err) {
       res.status(500).send('Internal Error');
     } else {
-      res.status(200).send(res);
+      res.status(200).send();
     }
   });
 });

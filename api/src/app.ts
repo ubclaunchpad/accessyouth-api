@@ -1,5 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+require('dotenv').config()
 
 const app = express();
 const port = 3001;
@@ -9,7 +11,8 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
-
+app.use(bodyParser.urlencoded({ extended: false })); // parse x-www-form-urlencoded
+app.use(bodyParser.json()); // parse JSON
 app.use('/api/service', require('./routes/service'));
 
 mongoose.connect(
