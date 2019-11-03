@@ -5,6 +5,7 @@ require('dotenv').config()
 
 const app = express();
 const port = 3001;
+const connectionString: any = process.env.DB_CONNECTION_STRING;
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -16,7 +17,7 @@ app.use(bodyParser.json()); // parse JSON
 app.use('/api/service', require('./routes/service'));
 
 mongoose.connect(
-  '', // connection string
+  connectionString, // connection string
   { useNewUrlParser: true, useUnifiedTopology: true },
   (err) => {
     if (err) {
