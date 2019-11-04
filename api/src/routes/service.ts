@@ -1,9 +1,9 @@
-import express from 'express';
-const router = express.Router();
+import express, {Router,Request,Response} from 'express';
+const router: Router = express.Router();
 
 const Service = require('../models/service');
 
-router.post('/create', (req, res) => {
+router.post('/create', (req: Request, res: Response) => {
   // TODO: validate req
   Service.create({
     uuid: req.body.uuid,
@@ -19,7 +19,7 @@ router.post('/create', (req, res) => {
   });
 });
 
-router.get('/getService', (req, res) => {
+router.get('/getService', (req: Request, res: Response) => {
   // TODO: validate req
   Service.findOne({
     uuid: req.query.uuid
@@ -32,22 +32,33 @@ router.get('/getService', (req, res) => {
   });
 });
 
-router.post('/updateLocation', (req, res) => {
+router.post('/updateLocation', (req: Request, res: Response) => {
   // TODO: validate req
+  if (!req.body.currentLocation){
+    res.status(500).send("No location to update")
+  }
+  else if (req.body.currentLocation.includes(null)){
+    res.status(500).send("Cannot send null location")
+  }
+  else if (req.body.currentLocation.length != 2){
+    res.status(500).send("Location must have a lat and lon")
+  }
+  else {
   Service.updateOne({
     uuid: req.body.uuid
   }, {
-    currentLocation: req.body.currentLocation
-  }, (err: any) => {
+    $set: {currentLocation: req.body.currentLocation}
+  }, {runValidators: true}, (err: any,doc: any) => {
     if (err) {
-      res.status(500).send('Internal Error');
+      res.status(500).send({message: err});
     } else {
-      res.status(200).send();
+      res.status(200).send("Location updated successfully");
     }
   });
+}
 });
 
-router.get('/getLocation', (req, res) => {
+router.get('/getLocation', (req: Request, res: Response) => {
   Service.findOne({
     uuid: req.query.uuid
   }, (err: any, service: any) => {
@@ -57,6 +68,22 @@ router.get('/getLocation', (req, res) => {
       res.status(404).send('Service not found');
     } else {
       res.status(200).send(service.currentLocation);
+    }
+  });
+});
+
+router.post('/updateDetails', async (req: Request, res: Response) => {
+
+  // TODO: validate req
+  Service.updateOne({
+    uuid: req.body.uuid
+  }, {
+    $set: {description: req.body.description}
+  }, {runValidators: true}, (err: any,doc: any) => {
+    if (err) {
+      res.status(500).send({message: err});
+    } else {
+      res.status(200).send("Description updated successfully");
     }
   });
 });
