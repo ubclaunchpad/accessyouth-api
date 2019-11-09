@@ -6,7 +6,7 @@ const app = express();
 const port = 3001;
 const connectionString: any = process.env.DB_CONNECTION_STRING;
 
-app.use((req, res, next) => {
+app.use((req: any , res:any , next:any) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
