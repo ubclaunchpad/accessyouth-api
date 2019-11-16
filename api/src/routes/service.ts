@@ -74,9 +74,11 @@ router.get('/getLocation', (req: Request, res: Response) => {
 
 router.post('/updateDetails', async (req: Request, res: Response) => {
 
-  if (req.body.includes(null)) {
+  if (!req.body.description) {
+    res.status(500).send("No description was added!")
+  } else if (req.body.description == null) {
     res.status(500).send("Cannot have null as description!")
-  }
+  } else {
   // TODO: validate req
   Service.updateOne({
     uuid: req.body.uuid
@@ -89,6 +91,6 @@ router.post('/updateDetails', async (req: Request, res: Response) => {
       res.status(200).send("Description updated successfully");
     }
   });
-});
+}});
 
 module.exports = router;
