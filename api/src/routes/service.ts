@@ -34,11 +34,7 @@ router.get('/getService', (req: Request, res: Response) => {
 
 router.post('/updateLocation', (req: Request, res: Response) => {
   // TODO: validate req
-  if (!req.body.currentLocation){
-    res.status(400).send("No location to update")
-  } else if (req.body.currentLocation.includes(null)){
-    res.status(400).send("Cannot send null location")
-  } else if (!req.body.currentLocation.lat || !req.body.currentLocation.lon){
+  if (!req.body.currentLocation.lat || !req.body.currentLocation.lon){
     res.status(400).send("Location must have a lat and lon")
   } else {
     Service.updateOne({
