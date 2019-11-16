@@ -51,9 +51,9 @@ router.post('/updateLocation', (req: Request, res: Response) => {
   }
 });
 
-router.get('/getLocation', (req: Request, res: Response) => {
+router.post('/getLocation', (req: Request, res: Response) => {
   Service.findOne({
-    uuid: req.query.uuid
+    uuid: req.body.uuid
   }, (err: any, service: any) => {
     if (err) {
       res.status(500).send('Internal Error');
