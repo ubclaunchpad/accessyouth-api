@@ -74,6 +74,9 @@ router.get('/getLocation', (req: Request, res: Response) => {
 
 router.post('/updateDetails', async (req: Request, res: Response) => {
 
+  if (req.body.includes(null)) {
+    res.status(500).send("Cannot have null as description!")
+  }
   // TODO: validate req
   Service.updateOne({
     uuid: req.body.uuid
