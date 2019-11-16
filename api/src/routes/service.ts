@@ -35,27 +35,24 @@ router.get('/getService', (req: Request, res: Response) => {
 router.post('/updateLocation', (req: Request, res: Response) => {
   // TODO: validate req
   if (!req.body.currentLocation){
-    res.status(500).send("No location to update")
+    res.status(400).send("No location to update")
+  } else if (req.body.currentLocation.includes(null)){
+    res.status(400).send("Cannot send null location")
+  } else if (!req.body.currentLocation.lat || !req.body.currentLocation.lon){
+    res.status(400).send("Location must have a lat and lon")
+  } else {
+    Service.updateOne({
+      uuid: req.body.uuid
+    }, {
+      $set: {currentLocation: req.body.currentLocation}
+    }, {runValidators: true}, (err: any, doc: any) => {
+      if (err) {
+        res.status(500).send({message: err});
+      } else {
+        res.status(200).send("Location updated successfully");
+      }
+    });
   }
-  else if (req.body.currentLocation.includes(null)){
-    res.status(500).send("Cannot send null location")
-  }
-  else if (req.body.currentLocation.length != 2){
-    res.status(500).send("Location must have a lat and lon")
-  }
-  else {
-  Service.updateOne({
-    uuid: req.body.uuid
-  }, {
-    $set: {currentLocation: req.body.currentLocation}
-  }, {runValidators: true}, (err: any,doc: any) => {
-    if (err) {
-      res.status(500).send({message: err});
-    } else {
-      res.status(200).send("Location updated successfully");
-    }
-  });
-}
 });
 
 router.get('/getLocation', (req: Request, res: Response) => {
@@ -68,6 +65,18 @@ router.get('/getLocation', (req: Request, res: Response) => {
       res.status(404).send('Service not found');
     } else {
       res.status(200).send(service.currentLocation);
+    }
+  });
+});
+
+router.get('/getAllServices', (req: Request, res: Response) => {
+  Service.find({}, (err: any, services: any) => {
+    if (err) {
+      res.status(500).send('Internal Error');
+    } else if (!services) {
+      res.status(404).send('No services in database');
+    } else {
+       res.status(200).send(services);
     }
   });
 });

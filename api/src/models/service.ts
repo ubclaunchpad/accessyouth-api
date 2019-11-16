@@ -14,8 +14,14 @@ const ServiceSchema = new mongoose.Schema({
     required: true,
   },
   currentLocation: {
-    type: [Number],
-    required: true,
+    lat: {
+      type: Number,
+      required: true,
+    },
+    lon: {
+      type: Number,
+      required: true,
+    }
   },
   description: {
     type: String
