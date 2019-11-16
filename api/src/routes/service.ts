@@ -69,6 +69,18 @@ router.get('/getLocation', (req: Request, res: Response) => {
   });
 });
 
+router.get('/getAllServices', (req: Request, res: Response) => {
+  Service.find({}, (err: any, services: any) => {
+    if (err) {
+      res.status(500).send('Internal Error');
+    } else if (!services) {
+      res.status(404).send('No services in database');
+    } else {
+       res.status(200).send(services);
+    }
+  });
+});
+
 router.post('/updateDetails', async (req: Request, res: Response) => {
 
   // TODO: validate req
