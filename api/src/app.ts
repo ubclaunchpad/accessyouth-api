@@ -22,8 +22,8 @@ app.use('/api/request', require('./routes/request'));
 mongoose.connect(
   connectionString, // connection string
   { useNewUrlParser: true, useUnifiedTopology: true },
-  (err) => 
-    {if (err) {
+  (err) => {
+    if (err) {
       console.log('Unable to connect to Mongo.', err);
       process.exit(1);
     } else {
@@ -35,5 +35,5 @@ mongoose.connect(
         console.error(err);
       });
     }
-    }
+  }
 );

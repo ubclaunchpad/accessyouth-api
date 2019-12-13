@@ -18,7 +18,7 @@ const RequestSchema = new mongoose.Schema({
   description: {
     type: String
   },
-  isValid: {
+  status: {
     type: Boolean,
     required: true,
   }

@@ -18,7 +18,7 @@ router.post('/create', (req: Request, res: Response, next: NextFunction) => {
     location: req.body.location,
     phone: req.body.phone,
     description: req.body.description,
-    isValid: true
+    status: 'valid'
   }, (err: any, userRequest: any) => {
     if (err) {
       res.status(500).send('Internal Error');
