@@ -1,4 +1,4 @@
-import express, {Application, Request, Response, NextFunction, ErrorRequestHandler} from 'express';
+import express, { Application, Request, Response, NextFunction, ErrorRequestHandler } from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 require('dotenv').config()
@@ -12,9 +12,12 @@ app.use((req: Request, res: Response , next: NextFunction) => {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
+
 app.use(bodyParser.urlencoded({ extended: false })); // parse x-www-form-urlencoded
 app.use(bodyParser.json()); // parse JSON
+
 app.use('/api/service', require('./routes/service'));
+app.use('/api/request', require('./routes/request'));
 
 mongoose.connect(
   connectionString, // connection string

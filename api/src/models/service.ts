@@ -27,6 +27,7 @@ const ServiceSchema = new mongoose.Schema({
     type: String
   }
 }, {
+  timestamps: true,
   collection: 'service'
 });
 
