@@ -9,13 +9,17 @@ router.post('/create', (req: Request, res: Response, next: NextFunction) => {
   if (!validator.isUUID(req.body.uuid)) {
     res.status(400).send('Invalid UUID');
     return;
+  } else if (!validator.isLatLong([req.body.currentLocation.lat, req.body.currentLocation.lon].join())) {
+    res.status(400).send('currentLocation must have lat and lon');
+    return;
   }
 
   Service.create({
     uuid: req.body.uuid,
+    type: req.body.type,
     name: req.body.name,
     currentLocation: req.body.currentLocation,
-    description: req.body.description,
+    description: req.body.description
   }, (err: any, service: any) => {
     if (err) {
       res.status(500).send('Internal Error');
@@ -46,7 +50,7 @@ router.post('/updateLocation', (req: Request, res: Response, next: NextFunction)
   if (!validator.isUUID(req.body.uuid)) {
     res.status(400).send('Invalid UUID');
     return;
-  } else if (!req.body.currentLocation.lat || !req.body.currentLocation.lon) {
+  } else if (!validator.isLatLong([req.body.currentLocation.lat, req.body.currentLocation.lon].join())) {
     res.status(400).send('currentLocation must have lat and lon');
     return;
   }
