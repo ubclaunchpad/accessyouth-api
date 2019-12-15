@@ -29,7 +29,7 @@ router.post('/create', (req: Request, res: Response, next: NextFunction) => {
 });
 
 router.get('/getAllRequests', (req: Request, res: Response, next: NextFunction) => {
-  UserRequest.find({}, (err: any, userRequest: any) => {
+  UserRequest.find({ status: 'valid' }, (err: any, userRequest: any) => {
     if (err) {
       res.status(500).send('Internal Error');
     } else {
