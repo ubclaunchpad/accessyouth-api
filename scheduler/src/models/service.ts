@@ -5,18 +5,29 @@ const ServiceSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  type: {
+    type: String,
+    required: true,
+  },
   name: {
     type: String,
     required: true,
   },
   currentLocation: {
-    type: [Number],
-    required: true,
+    lat: {
+      type: Number,
+      required: true,
+    },
+    lon: {
+      type: Number,
+      required: true,
+    }
   },
   description: {
     type: String
   }
 }, {
+  timestamps: true,
   collection: 'service'
 });
 
