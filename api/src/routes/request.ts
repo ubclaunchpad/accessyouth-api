@@ -17,7 +17,7 @@ router.post('/create', (req: Request, res: Response, next: NextFunction) => {
   UserRequest.create({
     location: req.body.location,
     phone: req.body.phone,
-    description: req.body.description,
+    details: req.body.details,
     status: 'valid'
   }, (err: any, userRequest: any) => {
     if (err) {

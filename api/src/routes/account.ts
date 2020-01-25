@@ -18,7 +18,8 @@ router.post('/create', (req: Request, res: Response, next: NextFunction) => {
     email: req.body.email,
     username: req.body.username,
     password: req.body.password,
-    type: req.body.type
+    accountType: req.body.accountType,
+    status: 'valid'
   }, (err: any, account: any) => {
     if (err) {
       res.status(500).send('Internal Error');
@@ -38,12 +39,13 @@ router.post('/login', (req: Request, res: Response, next: NextFunction) => {
   Account.findOne({
     email: req.body.email,
     // username: req.body.username,
-    password: req.body.password
+    password: req.body.password,
+    status: 'valid'
   }, (err: any, account: any) => {
     if (err) {
       res.status(500).send('Internal Error');
     } else {
-      jwt.sign({ payload: account }, secret, { expiresIn: req.body.expirationTime }, (err, token) => {
+      jwt.sign({ payload: account }, secret, { expiresIn: 86400 }, (err, token) => {
         if (err) {
           res.status(500).send('Failed to create token');
         } else {

@@ -11,7 +11,7 @@ router.use(routes, (req: Request, res: Response, next: NextFunction) => {
   const authString = (typeof req.headers.authorization === 'string') ? req.headers.authorization.split(' ')[1] : '';
   jwt.verify(authString, secret, (err: any, decoded: any) => {
     if (err) {
-      res.status(400).send('Invalid token');
+      res.status(401).send('Invalid token'); // not authenticated
     } else {
       next();
     }
