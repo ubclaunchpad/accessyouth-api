@@ -16,7 +16,8 @@ app.use((req: Request, res: Response , next: NextFunction) => {
 app.use(bodyParser.urlencoded({ extended: false })); // parse x-www-form-urlencoded
 app.use(bodyParser.json()); // parse JSON
 
-app.use('/api/service', require('./routes/service'));
+app.use('/api/account', require('./middleware/verify'), require('./routes/account'));
+app.use('/api/service', require('./middleware/verify'), require('./routes/service'));
 app.use('/api/request', require('./routes/request'));
 
 mongoose.connect(

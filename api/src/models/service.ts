@@ -5,7 +5,7 @@ const ServiceSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  type: {
+  serviceType: {
     type: String,
     required: true,
   },
@@ -23,7 +23,7 @@ const ServiceSchema = new mongoose.Schema({
       required: true,
     }
   },
-  description: {
+  details: {
     type: String
   }
 }, {

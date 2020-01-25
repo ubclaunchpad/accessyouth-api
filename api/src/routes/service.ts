@@ -19,7 +19,7 @@ router.post('/create', (req: Request, res: Response, next: NextFunction) => {
     type: req.body.type,
     name: req.body.name,
     currentLocation: req.body.currentLocation,
-    description: req.body.description
+    details: req.body.details
   }, (err: any, service: any) => {
     if (err) {
       res.status(500).send('Internal Error');
@@ -101,20 +101,20 @@ router.post('/updateDetails', async (req: Request, res: Response, next: NextFunc
   if (!validator.isUUID(req.body.uuid)) {
     res.status(400).send('Invalid UUID');
     return;
-  } else if (!req.body.description) {
-    res.status(500).send("Invalid description");
+  } else if (!req.body.details) {
+    res.status(500).send("Invalid details");
     return;
   }
 
   Service.updateOne({
     uuid: req.body.uuid
   }, {
-    $set: { description: req.body.description }
+    $set: { details: req.body.details }
   }, (err: any, service: any) => {
     if (err) {
       res.status(500).send({message: err});
     } else {
-      res.status(200).send("Description updated successfully");
+      res.status(200).send("Details updated successfully");
     }
   });
 });
