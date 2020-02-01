@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 require('dotenv').config()
 
 const app: Application = express();
-const port: Number  = 3001;
+const port: Number  = 3000;
 const connectionString: any = process.env.DB_CONNECTION_STRING;
 
 app.use((req: Request, res: Response , next: NextFunction) => {
