@@ -73,6 +73,8 @@ router.post('/login', (req: Request, res: Response, next: NextFunction) => {
   }, (err: any, account: any) => {
     if (err) {
       res.status(500).send('Internal Error');
+    } else if (!account) {
+      res.status(400).send('Account not found');
     } else {
       jwt.sign({ payload: account }, secret, { expiresIn: 86400 }, (err, token) => {
         if (err) {
