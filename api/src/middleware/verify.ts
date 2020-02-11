@@ -4,7 +4,7 @@ const router: Router = express.Router();
 import jwt from 'jsonwebtoken';
 const secret: any = process.env.JWT_SECRET;
 
-const routes = ['/create', '/updateLocation', '/updateDetails'];
+const routes = ['/create', '/details', '/updateLocation', '/updateDetails'];
 
 router.use(routes, (req: Request, res: Response, next: NextFunction) => {
   // authentication header leads with 'Bearer '
@@ -13,6 +13,7 @@ router.use(routes, (req: Request, res: Response, next: NextFunction) => {
     if (err) {
       res.status(401).send('Invalid token'); // not authenticated
     } else {
+      res.locals.payload = decoded.payload;
       next();
     }
   });

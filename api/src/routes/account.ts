@@ -52,6 +52,12 @@ router.post('/create', (req: Request, res: Response, next: NextFunction) => {
   });
 });
 
+router.get('/details', (req: Request, res: Response, next: NextFunction) => {
+  // goes through the verify middleware so if it reaches here token is valid
+  res.status(200).send(res.locals.payload);
+  return;
+});
+
 router.post('/login', (req: Request, res: Response, next: NextFunction) => {
   // if (!validator.isEmail(req.body.email)) {
   //   res.status(400).send('email is not valid');
