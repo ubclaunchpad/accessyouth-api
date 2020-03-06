@@ -12,3 +12,9 @@ To run locally, navigate to directory with `package.json`:
 1. `npm install`
 
 2. `npm run start`
+
+# For development: 
+`npm run dev` will watch for code changes and refresh automatically 
+
+# Deployment: 
+To access the api from the interwebs: https://access-youth-api.herokuapp.com
