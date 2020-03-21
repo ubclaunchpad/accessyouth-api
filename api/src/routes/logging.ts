@@ -2,9 +2,6 @@ import express, { Router, Request, Response, NextFunction } from 'express';
 const router: Router = express.Router();
 
 import validator from 'validator';
-import crypto from 'crypto';
-import jwt from 'jsonwebtoken';
-import { request } from 'http';
 
 const LogsPersistence = require('../models/logs');
 
@@ -13,7 +10,7 @@ router.post('/persistLog', (req: Request, res: Response, next: NextFunction) => 
     res.status(400).send('id is not a valid uuid');
     return;
   } 
-  
+
   LogsPersistence.create({
     logid: req.body.logid, 
     deviceType: req.body.deviceType, 
