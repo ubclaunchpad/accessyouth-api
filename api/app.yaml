@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+    name: accessyouthapi
+spec: 
+    replicas: 12 
+    template: 
+        metadata: 
+            labels: 
+                name: accessyouthapi
+        spec: 
+            containers: 
+            - name: accessyouthapi
+              image: gcr.io/accessyouth-staging/accessyouth-apiv4
+              imagePullPolicy: IfNotPresent
+              ports: 
+                - containerPort: 3000 
+                
+
