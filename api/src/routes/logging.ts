@@ -9,14 +9,11 @@ import { request } from 'http';
 const LogsPersistence = require('../models/logs');
 
 router.post('/persistLog', (req: Request, res: Response, next: NextFunction) => {
-  // if (!validator.isEmail(req.body.email)) {
-  //   res.status(400).send('email is not valid');
-  //   return;
-  // }
   if (!validator.isUUID(req.body.logid)) {
     res.status(400).send('id is not a valid uuid');
     return;
   } 
+  
   LogsPersistence.create({
     logid: req.body.logid, 
     deviceType: req.body.deviceType, 
