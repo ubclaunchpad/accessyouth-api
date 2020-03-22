@@ -1,4 +1,4 @@
-# accessyouth-api       [![Build Status](https://travis-ci.org/ubclaunchpad/accessyouth-api.svg?branch=develop)](https://travis-ci.org/ubclaunchpad/accessyouth-api)
+# :bus:   Access Youth API      [![Build Status](https://travis-ci.org/ubclaunchpad/accessyouth-api.svg?branch=develop)](https://travis-ci.org/ubclaunchpad/accessyouth-api)
 
 The backend to support youth outreach and empowerment by facilitating easier communication between Access Youth (NPO) and troubled youth
 
