@@ -26,7 +26,7 @@
     "cron": "^1.7.2",
     "dotenv": "^8.2.0",
     "mongoose": "^5.7.5",
-    "nodemon": "^1.19.4",
+    "nodemon": "^2.0.2",
     "ts-node": "^8.4.1",
     "ts-node-dev": "^1.0.0-pre.43",
     "tslint": "^5.20.0",
