@@ -3,9 +3,10 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 require('dotenv').config()
 
+
 const app: Application = express();
-const port: any   = process.env.PORT || 3000;
-const connectionString: any = process.env.DB_CONNECTION_STRING;
+const port: string | number   = process.env.PORT || 3000;
+const connectionString: string = process.env.DB_CONNECTION_STRING
 
 app.use((req: Request, res: Response , next: NextFunction) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -21,7 +22,7 @@ app.use('/api/service', require('./middleware/verify'), require('./routes/servic
 app.use('/api/request', require('./routes/request'));
 
 mongoose.connect(
-  connectionString, // connection string
+  connectionString , // connection string
   { useNewUrlParser: true, useUnifiedTopology: true },
   (err) => {
     if (err) {
