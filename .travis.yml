@@ -1,0 +1,16 @@
+sudo: false 
+
+language: node_js
+
+node_js: 
+    - node
+install: 
+    - npm ci 
+
+before_install:
+    - cd api
+
+script: 
+    - npm run start
+
+
