@@ -11,6 +11,6 @@ before_install:
     - cd api
 
 script: 
-    - npm run start
+    - npm run test
 
 
