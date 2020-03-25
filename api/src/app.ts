@@ -19,7 +19,7 @@ app.use(bodyParser.json()); // parse JSON
 app.use('/api/account', require('./middleware/verify'), require('./routes/account'));
 app.use('/api/service', require('./middleware/verify'), require('./routes/service'));
 app.use('/api/request', require('./routes/request'));
-app.use('/api/logging', require('./middleware/verify'), require('./routes/logging'));
+app.use('/api/logging', require('./routes/logging'));
 
 mongoose.connect(
   connectionString, // connection string

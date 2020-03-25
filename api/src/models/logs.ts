@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { Guid } from "guid-typescript";
 
 const LogSchema = new mongoose.Schema({
-  logid: {
+  logId: {
     type: String, 
     default: Guid.create().toString(), 
     required: true 

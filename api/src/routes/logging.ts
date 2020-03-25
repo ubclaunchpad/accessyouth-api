@@ -3,16 +3,16 @@ const router: Router = express.Router();
 
 import validator from 'validator';
 
-const LogsPersistence = require('../models/logs');
+const PersistentLog = require('../models/logs');
 
 router.post('/persistLog', (req: Request, res: Response, next: NextFunction) => {
-  if (!validator.isUUID(req.body.logid)) {
+  if (!validator.isUUID(req.body.logId)) {
     res.status(400).send('id is not a valid uuid');
     return;
   } 
 
-  LogsPersistence.create({
-    logid: req.body.logid, 
+  PersistentLog.create({
+    logId: req.body.logId, 
     deviceType: req.body.deviceType, 
     deviceVersion: req.body.deviceVersion,
     appVersion: req.body.appVersion, 
@@ -29,7 +29,7 @@ router.post('/persistLog', (req: Request, res: Response, next: NextFunction) => 
 });
 
 router.get('/getAllLogs', (req: Request, res: Response, next: NextFunction) => {
-    LogsPersistence.find({}, (err: any, logs: any) => {
+    PersistentLog.find({}, (err: any, logs: any) => {
         if (err) {
           res.status(500).send('Internal Error');
         } else {
@@ -39,11 +39,11 @@ router.get('/getAllLogs', (req: Request, res: Response, next: NextFunction) => {
 });
 
 router.post('/getLog', (req: Request, res: Response, next: NextFunction) => {
-    if (!validator.isUUID(req.body.logid)) {
+    if (!validator.isUUID(req.body.logId)) {
         res.status(400).send('id is not a valid uuid');
         return;
     } 
-    LogsPersistence.findOne({logid: req.body.logid}, (err: any, log: any) => {
+    PersistentLog.findOne({logId: req.body.logId}, (err: any, log: any) => {
         if (err) {
           res.status(500).send('Internal Error');
         } else {
